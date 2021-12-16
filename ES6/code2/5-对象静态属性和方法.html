@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静态成员</title>
+</head>
+<body>
+    <script>
+        //
+        // function Phone(brand){
+        //     //为实例对象添加属性
+        //     this.brand = brand;
+        // }
+        // //为函数对象添加属性
+        // Phone.name = '手机';//又称之为 静态成员
+        // Phone.change = function(){
+        //     console.log('改变了世界');
+        // }
+        // //
+        // let nokia = new Phone('诺基亚');
+        // console.log(nokia);
+        // console.dir(Phone);
+
+        class Phone{
+            //static 静态的
+            static name = '手机';
+            static change(){
+                console.log("我改变了世界");
+            }
+        }
+
+        console.log(Phone.name);
+        Phone.change();
+
+    </script>
+</body>
+</html>

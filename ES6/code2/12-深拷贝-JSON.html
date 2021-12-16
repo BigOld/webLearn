@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深拷贝-JSON</title>
+</head>
+<body>
+    <script>
+        //JSON 实现深拷贝
+        // * stringify 将 JS 对象转化为 JSON 格式的字符串
+        // * parse    将 JSON 格式的字符串转化为 JS 对象
+        //缺陷: 不能复制方法
+        const school = {
+            name: '尚硅谷',
+            pos: ['北京','上海','深圳'],
+            founder: {
+                name: '刚哥'
+            },
+            change: function(){
+                console.log('改变');
+            }
+        }
+
+        //将 对象转为 JSON 格式的字符串
+        let str = JSON.stringify(school);
+        //将对象转为JS对象
+        let newSchool = JSON.parse(str);
+
+        //测试
+        newSchool.pos[0] = 'beijing';
+
+        console.log(school);
+        console.log(newSchool);
+        // console.log(str);
+        // console.log(typeof str);
+
+
+
+    </script>
+</body>
+
+</html>
