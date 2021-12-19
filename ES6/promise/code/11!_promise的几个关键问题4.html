@@ -33,6 +33,28 @@
 		sendAjax('https://api.apiopen.top/getJoke',{page:1})
 		.then(
 			value => {
+				console.log('第一次回调成功了')
+				return sendAjax('https://api.apiopen.top/getJoke',{page:1})
+			},
+			reason => console.log('第一次失败了')
+
+		)
+		.then(
+			value => {
+				console.log('第二次回调成功了')
+				return sendAjax('https://api.apiopen.top/getJoke',{page:1})
+			},
+			reason => console.log('第二次回调失败了')
+		)
+		.then(
+			value => {
+				console.log('第三次回调成功饿了')
+				return sendAjax('https://api.apiopen.top/getJoke',{page:1})
+			},
+			reason => console.log('第三次回调失败了')
+		)
+		/* .then(
+			value => {
 				console.log('第1次请求成功了',value);
 				//发送第2次请求
 				return sendAjax('https://api.apiopen.top/getJoke',{page:1})
@@ -50,7 +72,7 @@
 		.then(
 			value => {console.log('第3次请求成功了',value);},
 			reason => {console.log('第3次请求失败了',reason);}
-		)
+		) */
   </script>
 </body>
 </html>

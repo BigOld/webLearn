@@ -255,3 +255,70 @@ demo()
 console.log(1); // 先输出1再输出demo中的回调
 ```
 
+## 宏队列和微队列
+
+promise 为微队列，微队列优先级高于宏队列
+
+```js
+setTimeout(()=>{
+  console.log('timeout1')
+  Promise.resolve(5).then(
+  value => console.log('成功了5')
+	)
+})
+setTimeout(()=>{
+	console.log('timeout2')
+})
+
+Promise.resolve(3).then(
+	value => console.log('成功了3')
+)
+Promise.resolve(4).then(
+	value => console.log('失败了4')
+)
+```
+
+## 面试题
+
+```js
+const p = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('ok')
+  }, 1000) // 当1s之后才将定时器推向宏队列
+})
+p.then(
+	value => console.log(value),
+  reason => console.log(reason)
+)
+```
+
+进队列的时机：当要执行条件满足的时候才被放进宏队列或者微队列
+
+```js
+setTimeout(() => {
+  console.log("0")
+}, 0)
+new Promise((resolve, reject) => {
+  console.log("1")
+  resolve()
+}).then(() => {
+  console.log("2")
+  new Promise((resolve, reject) => {
+    console.log('3')
+    resolve()
+  }).then((resolve, reject) => {
+    console.log('4')
+  }).then((resolve, reject) => {
+    console.log("5")
+  })
+}).then((resolve, reject) => {
+  console.log("6")
+})
+new Promise((resolve, reject) => {
+  console.log("7")
+  resolve()
+}).then(() => {
+  console.log("8")
+})
+```
+

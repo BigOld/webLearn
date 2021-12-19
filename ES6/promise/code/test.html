@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>准备_函数对象与实例对象</title>
+</head>
+<body>
+  <script>
+    const p = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(100)
+      }, 1000)
+    })
+    const x = p.then(
+      value => console.log('成功了'),
+      reason => console.log('失败了')
+    )
+    console.log(x);
+  </script>
+</body>
+</html>
